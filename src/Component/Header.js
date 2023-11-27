@@ -9,9 +9,14 @@ export default function Header() {
   const [searchValue, setSearchValue] = useState("");
   const [showModal, setShowModal] = useState(false);
   const [productsData, setProductsData] = useState([]);
+  console.log("ll",searchValue);
+
   const handleSearch = async (e) => {
     e.preventDefault();
-  
+    if (searchValue === "") {
+      setShowModal(false);
+      return; // Exit the function early
+    }
     try {
       const querySnapshot = await getDocs(
         query(collection(db, 'products'), where('tracking_id', '==', searchValue))
@@ -34,12 +39,14 @@ export default function Header() {
         console.log('Tracking ID related data:', data);
       } else {
         // No data found for the given tracking ID
+        setShowModal(false);
         console.log('No data found for the tracking ID:', searchValue);
       }
     } catch (error) {
       console.error('Error fetching tracking details:', error);
     }
   };
+  
   return (
     <div className="slider-area ">
       <div className="slider-active">
