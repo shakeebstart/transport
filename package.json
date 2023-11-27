@@ -1,6 +1,6 @@
 {
     "homepage": "http://shakeebstart.github.io/transport",
-  "name": "transsport",
+  "name": "transport",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
